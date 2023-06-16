@@ -75,17 +75,17 @@
     </style>
 
     <!-- Source and Publish data TextAppearance -->
-    <style name="TextAppearance.TheChronicle.Subtitles" parent="TextAppearance.TheFortnightly.Subtitle1">
+    <style name="TextAppearance.TheFortnightly.Subtitles" parent="TextAppearance.TheFortnightly.Subtitle1">
         <item name="android:textSize">@dimen/text_size_small</item>
     </style>
 
     <!-- Search input TextAppearance -->
-    <style name="TextAppearance.TheChronicle.SearchInput" parent="TextAppearance.TheFortnightly.Headline5">
+    <style name="TextAppearance.TheFortnightly.SearchInput" parent="TextAppearance.TheFortnightly.Headline5">
         <item name="android:textSize">@dimen/text_size_medium</item>
     </style>
 
     <!-- Search button TextAppearance -->
-    <style name="TextAppearance.TheChronicle.SearchButton" parent="TextAppearance.TheFortnightly.Button">
+    <style name="TextAppearance.TheFortnightly.SearchButton" parent="TextAppearance.TheFortnightly.Button">
         <item name="android:textSize">@dimen/text_size_extra_small</item>
     </style>
 

@@ -11,10 +11,8 @@
     <string name="category_sports_label">#Sport</string>
     <string name="category_breaking_news_label">#Latest</string>
     <string name="category_business_label">#Business</string>
-    <string name="category_entertainment_label">#Entertainment</string>
-    <string name="category_general_label">#General</string>
-    <string name="category_health_label">#Health</string>
     <string name="category_science_label">#Science</string>
+    <string name="bookmarks_label">#Bookmarks</string>
 
     <string name="search_news_hint_label">Search for article</string>
     <string name="language_hint_label">Language</string>

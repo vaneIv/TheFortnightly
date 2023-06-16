@@ -17,6 +17,7 @@
 
     <dimen name="image_size_small">85dp</dimen>
     <dimen name="image_size_large">220dp</dimen>
+    <dimen name="image_size_menu">28dp</dimen>
 
     <dimen name="search_foreground_reveal_height">200dp</dimen>
 
