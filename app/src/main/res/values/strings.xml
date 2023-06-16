@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">The Fortnightly</string>
+
+    <string name="article_list_title">Articles</string>
+    <string name="article_details_title">Article</string>
+    <string name="generic_error">Something went wrong</string>
+    <string name="network_error">Network error</string>
+    <string name="retry">Retry</string>
+
+    <!-- News category label -->
+    <string name="category_sports_label">#Sport</string>
+    <string name="category_breaking_news_label">#Latest</string>
+    <string name="category_business_label">#Business</string>
+    <string name="category_entertainment_label">#Entertainment</string>
+    <string name="category_general_label">#General</string>
+    <string name="category_health_label">#Health</string>
+    <string name="category_science_label">#Science</string>
+
+    <string name="search_news_hint_label">Search for article</string>
+    <string name="language_hint_label">Language</string>
+    <string name="sort_by_hint_label">Sort By</string>
+    <string name="start_date_hint_label">Start Date</string>
+    <string name="end_date_hint_label">End Date</string>
+    <string name="search_label">Search</string>
 </resources>

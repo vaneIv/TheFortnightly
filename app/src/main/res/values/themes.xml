@@ -1,9 +1,35 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.TheFortnightly" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.TheFortnightly" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!--Material color attributes-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorLight</item>
+        <item name="tabTextColor">@color/textColorMedium</item>
+
+        <!--Material type attributes-->
+        <item name="textAppearanceHeadline1">@style/TextAppearance.TheFortnightly.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.TheFortnightly.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.TheFortnightly.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.TheFortnightly.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.TheFortnightly.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.TheFortnightly.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.TheFortnightly.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.TheFortnightly.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.TheFortnightly.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.TheFortnightly.Body2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.TheFortnightly.Button</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.TheFortnightly.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.TheFortnightly.Overline</item>
     </style>
 
-    <style name="Theme.TheFortnightly" parent="Base.Theme.TheFortnightly" />
+    <style name="Theme.TheFortnightly" parent="Base.Theme.TheFortnightly">
+        <!--Appbar Headline Title-->
+        <item name="titleTextAppearance">@style/TextAppearance.TheFortnightly.Toolbar.Title</item>
+        <!-- Status bar stuff. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryDark</item>
+    </style>
 </resources>

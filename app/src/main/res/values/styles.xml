@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.TheFortnightly.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <!-- Toolbar style -->
+    <style name="Widget.TheFortnightly.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:theme">@style/Theme.TheFortnightly</item>
+        <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
+        <item name="titleTextAppearance">?attr/titleTextAppearance</item>
+    </style>
+
+    <!-- TabItem style -->
+    <style name="Widget.TheFortnightly.TabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabTextColor">?attr/colorOnPrimary</item>
+        <item name="tabTextAppearance">@style/TextAppearance.TheFortnightly.TabLayout</item>
+        <item name="tabSelectedTextColor">?attr/tabTextColor</item>
+        <item name="tabIndicatorHeight">@dimen/spacing_zero</item>
+    </style>
+
+</resources>
