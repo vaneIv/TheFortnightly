@@ -49,6 +49,11 @@
         <item name="android:fontFamily">@font/libre_franklin</item>
     </style>
 
+    <style name="TextAppearance.TheFortnightly.Caption." parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/merriweather_regular_italic</item>
+        <item name="android:fontFamily">@font/merriweather_regular_italic</item>
+    </style>
+
     <style name="TextAppearance.TheFortnightly.Button" parent="TextAppearance.MaterialComponents.Button">
         <item name="fontFamily">@font/libre_franklin_bold</item>
         <item name="android:fontFamily">@font/libre_franklin_bold</item>
@@ -71,7 +76,7 @@
 
     <!-- TabLayout TextAppearance -->
     <style name="TextAppearance.TheFortnightly.TabLayout" parent="TextAppearance.TheFortnightly.Body2">
-        <item name="android:textSize">@dimen/toolbar_text_size</item>
+                <item name="android:textSize">@dimen/toolbar_text_size</item>
     </style>
 
     <!-- Source and Publish data TextAppearance -->
@@ -87,6 +92,17 @@
     <!-- Search button TextAppearance -->
     <style name="TextAppearance.TheFortnightly.SearchButton" parent="TextAppearance.TheFortnightly.Button">
         <item name="android:textSize">@dimen/text_size_extra_small</item>
+    </style>
+
+    <!-- Article details Title TextAppearance -->
+    <style name="TextAppearance.TheFortnightly.DetailsTitle" parent="TextAppearance.TheFortnightly.Headline5">
+        <item name="fontFamily">@font/merriweather_black_italic</item>
+        <item name="android:fontFamily">@font/merriweather_black_italic</item>
+    </style>
+
+    <!-- Article details Article content TextAppearance -->
+    <style name="TextAppearance.TheFortnightly.Content" parent="TextAppearance.TheFortnightly.Caption">
+        <item name="android:textSize">@dimen/text_size_medium</item>
     </style>
 
 </resources>

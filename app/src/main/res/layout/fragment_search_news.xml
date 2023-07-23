@@ -4,19 +4,20 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ScienceNewsFragment">
+    tools:context=".SearchNewsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_science_news"
+        android:id="@+id/recycler_view_search_news"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/spacing_normal"
         android:clipToPadding="false"
+        android:layout_margin="@dimen/spacing_normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/list_item_news_article" />
+        tools:listitem="@layout/list_item_news_article"/>
 
     <TextView
         android:id="@+id/text_view_error"
@@ -42,7 +43,7 @@
         android:text="@string/retry"
         android:textAppearance="@style/TextAppearance.TheFortnightly.SearchButton"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/recycler_view_science_news"
+        app:layout_constraintBottom_toBottomOf="@+id/recycler_view_search_news"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
