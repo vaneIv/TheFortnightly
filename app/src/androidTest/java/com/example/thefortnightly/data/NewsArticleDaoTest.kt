@@ -100,6 +100,7 @@ class NewsArticleDaoTest {
         newsArticleDao.getBreakingNews().test {
             val list = awaitItem()
             assertThat(list).isEmpty()
+            cancel()
         }
     }
 
@@ -194,6 +195,7 @@ class NewsArticleDaoTest {
         newsArticleDao.getAllBookmarkedArticles().test {
             val list = awaitItem()
             assertThat(list).isEmpty()
+            cancel()
         }
     }
 }
