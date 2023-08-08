@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "The Fortnightly"
-include ':app'
+include (":app")

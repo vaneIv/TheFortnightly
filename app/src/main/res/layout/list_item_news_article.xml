@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toStartOf="@+id/image_view_article"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_source"
-        tools:text="Cheney: January 6 committee has 'firsthand testimony' that Ivanka asked Trump to intervene during insurrection" />
+        tools:text="Cheney: January 6 committee has firsthand testimony that Ivanka asked Trump to intervene during insurrection" />
 
     <ImageView
         android:id="@+id/image_view_article"
