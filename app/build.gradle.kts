@@ -30,6 +30,10 @@ android {
                 "proguard-rules.pro"
             )
         }
+        getByName("debug") {
+            val apiKey: String = project.property("NEWS_API_KEY") as String
+            buildConfigField("String", "NEWS_API_KEY", apiKey)
+        }
     }
 
     buildFeatures {
