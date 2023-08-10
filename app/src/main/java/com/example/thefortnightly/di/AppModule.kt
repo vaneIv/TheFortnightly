@@ -26,6 +26,8 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
+    @Provides
+    @Singleton
     fun provideNewsApi(retrofit: Retrofit): NewsApiService =
         retrofit.create(NewsApiService::class.java)
 
