@@ -6,6 +6,9 @@
     <string name="generic_error">Something went wrong</string>
     <string name="network_error">Network error</string>
     <string name="retry">Retry</string>
+    <string name="could_not_refresh">Could not refresh: %s</string>
+    <string name="could_not_load_search_results">Could not load search results: %s</string>
+    <string name="unknown_error_occurred">An unknown error occurred</string>
 
     <!-- News category label -->
     <string name="category_sports_label">#Sport</string>

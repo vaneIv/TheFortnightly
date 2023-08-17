@@ -18,8 +18,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        // buildConfigField("String", "NEWS_API_ACCESS_KEY", news_api_key)
     }
 
     buildTypes {

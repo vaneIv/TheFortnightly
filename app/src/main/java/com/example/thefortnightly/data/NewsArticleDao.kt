@@ -19,6 +19,9 @@ interface NewsArticleDao {
     @Query("SELECT * FROM news_articles WHERE isBookmarked = 1")
     fun getAllBookmarkedArticles(): Flow<List<NewsArticle>>
 
+    @Query("SELECT * FROM news_articles WHERE url = :articleKey")
+    fun getArticle(articleKey: String): Flow<NewsArticle>
+
     // This query is used only for testing purposes.
     @Query("SELECT * FROM news_articles")
     fun getNewsArticles(): Flow<List<NewsArticle>>

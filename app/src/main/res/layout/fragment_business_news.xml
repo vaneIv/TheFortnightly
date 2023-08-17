@@ -1,53 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".BusinessNewsFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_business_news"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout_business_news"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:layout_margin="@dimen/spacing_normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/list_item_news_article"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_view_error"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_small"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:layout_marginEnd="@dimen/spacing_small"
-        android:layout_marginBottom="@dimen/spacing_small"
-        android:gravity="center_horizontal"
-        android:textAppearance="?attr/textAppearanceSubtitle1"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/button_retry"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="An error occurred"
-        tools:visibility="visible" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button_retry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/retry"
-        android:textAppearance="@style/TextAppearance.TheFortnightly.SearchButton"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/recycler_view_business_news"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_business_news"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/spacing_normal"
+                android:clipToPadding="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/list_item_news_article" />
 
+            <TextView
+                android:id="@+id/text_view_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginEnd="@dimen/spacing_small"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:gravity="center_horizontal"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/button_retry"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="An error occurred"
+                tools:visibility="visible" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/button_retry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/retry"
+                android:textAppearance="@style/TextAppearance.TheFortnightly.SearchButton"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/recycler_view_business_news"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

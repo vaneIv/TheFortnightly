@@ -9,11 +9,12 @@ data class NewsArticle(
     @PrimaryKey val url: String,
     val content: String,
     val description: String,
-    val category: String,
     val source: String,
     val publishedAt: String,
     val urlToImage: String,
+    val category: String,
     val isBookmarked: Boolean,
     val updatedAt: Long = System.currentTimeMillis()
 )
+
 

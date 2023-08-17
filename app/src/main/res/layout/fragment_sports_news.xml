@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScienceNewsFragment">
+    tools:context=".SportsNewsFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh_layout_science_news"
+        android:id="@+id/swipe_refresh_layout_sports_news"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -16,7 +16,7 @@
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_science_news"
+                android:id="@+id/recycler_view_sports_news"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/spacing_normal"
@@ -51,7 +51,7 @@
                 android:text="@string/retry"
                 android:textAppearance="@style/TextAppearance.TheFortnightly.SearchButton"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/recycler_view_science_news"
+                app:layout_constraintBottom_toBottomOf="@+id/recycler_view_sports_news"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
