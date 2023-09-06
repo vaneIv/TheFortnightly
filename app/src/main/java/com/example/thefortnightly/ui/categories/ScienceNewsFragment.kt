@@ -1,9 +1,6 @@
 package com.example.thefortnightly.ui.categories
 
-import android.os.Bundle
-import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -12,25 +9,26 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefortnightly.R
 import com.example.thefortnightly.databinding.FragmentScienceNewsBinding
 import com.example.thefortnightly.ui.NewsArticlesViewModel
+import com.example.thefortnightly.ui.shared.BaseCategoryFragment
 import com.example.thefortnightly.ui.shared.NewsArticleAdapter
 import com.example.thefortnightly.util.Resource
 import com.example.thefortnightly.util.exhaustive
 import com.example.thefortnightly.util.showSnackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ScienceNewsFragment : Fragment(R.layout.fragment_science_news) {
+class ScienceNewsFragment :
+    BaseCategoryFragment<FragmentScienceNewsBinding, NewsArticlesViewModel>(
+        FragmentScienceNewsBinding::inflate
+    ) {
 
-    private val viewModel: NewsArticlesViewModel by viewModels()
+    private val newsArticleAdapter = NewsArticleAdapter()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override val viewModel: NewsArticlesViewModel by viewModels()
 
-        val binding = FragmentScienceNewsBinding.bind(view)
-
-        val newsArticleAdapter = NewsArticleAdapter()
+    override fun setupViews() {
+        super.setupViews()
 
         binding.apply {
             recyclerViewScienceNews.apply {
@@ -39,6 +37,17 @@ class ScienceNewsFragment : Fragment(R.layout.fragment_science_news) {
                 setHasFixedSize(true)
             }
 
+
+            buttonRetry.setOnClickListener {
+                viewModel.onScienceCategoryRefresh()
+            }
+        }
+    }
+
+    override fun setupVM() {
+        super.setupVM()
+
+        binding.apply {
             viewLifecycleOwner.lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
                     viewModel.scienceArticles.collect {
@@ -82,10 +91,6 @@ class ScienceNewsFragment : Fragment(R.layout.fragment_science_news) {
             }
 
             swipeRefreshLayoutScienceNews.setOnRefreshListener {
-                viewModel.onScienceCategoryRefresh()
-            }
-
-            buttonRetry.setOnClickListener {
                 viewModel.onScienceCategoryRefresh()
             }
         }

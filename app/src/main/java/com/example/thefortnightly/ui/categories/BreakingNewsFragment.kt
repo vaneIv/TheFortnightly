@@ -1,9 +1,6 @@
 package com.example.thefortnightly.ui.categories
 
-import android.os.Bundle
-import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -12,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefortnightly.R
 import com.example.thefortnightly.databinding.FragmentBreakingNewsBinding
 import com.example.thefortnightly.ui.NewsArticlesViewModel
+import com.example.thefortnightly.ui.shared.BaseCategoryFragment
 import com.example.thefortnightly.ui.shared.NewsArticleAdapter
 import com.example.thefortnightly.util.Resource
 import com.example.thefortnightly.util.exhaustive
@@ -20,16 +18,18 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
+class BreakingNewsFragment :
+    BaseCategoryFragment<FragmentBreakingNewsBinding, NewsArticlesViewModel>(
+        FragmentBreakingNewsBinding::inflate
+    ) {
 
-    private val viewModel: NewsArticlesViewModel by viewModels()
+    private val newsArticleAdapter = NewsArticleAdapter()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override val viewModel: NewsArticlesViewModel by viewModels()
 
-        val binding = FragmentBreakingNewsBinding.bind(view)
 
-        val newsArticleAdapter = NewsArticleAdapter()
+    override fun setupViews() {
+        super.setupViews()
 
         binding.apply {
             recyclerViewBreakingNews.apply {
@@ -38,6 +38,16 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
                 setHasFixedSize(true)
             }
 
+            buttonRetry.setOnClickListener {
+                viewModel.onManualRefresh()
+            }
+        }
+    }
+
+    override fun setupVM() {
+        super.setupVM()
+
+        binding.apply {
             viewLifecycleOwner.lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
                     viewModel.breakingNews.collect {
@@ -82,10 +92,6 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
             }
 
             swipeRefreshLayoutBreakingNews.setOnRefreshListener {
-                viewModel.onManualRefresh()
-            }
-
-            buttonRetry.setOnClickListener {
                 viewModel.onManualRefresh()
             }
         }
