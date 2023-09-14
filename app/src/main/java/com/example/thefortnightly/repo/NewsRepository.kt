@@ -12,6 +12,7 @@ import com.example.thefortnightly.util.networkBoundResource
 import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class NewsRepository @Inject constructor(
@@ -22,6 +23,7 @@ class NewsRepository @Inject constructor(
     private val newsArticleDao = newsArticleDb.newsArticleDao()
     fun getTopHeadlines(
         category: String,
+        forceRefresh: Boolean,
         onFetchSuccess: () -> Unit,
         onFetchFailed: (Throwable) -> Unit
     ): Flow<Resource<List<NewsArticle>>> =
@@ -49,6 +51,21 @@ class NewsRepository @Inject constructor(
                     newsArticleDao.insertBreakingNews(breakingNews)
                 }
             },
+            shouldFetch = { cachedArticles ->
+                if (forceRefresh) {
+                    true
+                } else {
+                    val sortedArticles = cachedArticles.sortedBy { newsArticle ->
+                        newsArticle.updatedAt
+                    }
+                    val oldestTimestamp = sortedArticles.firstOrNull()?.updatedAt
+                    val needsRefresh = oldestTimestamp == null ||
+                            oldestTimestamp < System.currentTimeMillis() -
+                            TimeUnit.MINUTES.toMillis(5)
+
+                    needsRefresh
+                }
+            },
             onFetchSuccess = onFetchSuccess,
             onFetchFailed = { t ->
                 if (t !is HttpException && t !is IOException) {
@@ -60,9 +77,10 @@ class NewsRepository @Inject constructor(
 
     fun getCategoryArticles(
         category: String,
+        forceRefresh: Boolean,
         onFetchSuccess: () -> Unit,
         onFetchFailed: (Throwable) -> Unit
-        ): Flow<Resource<List<NewsArticle>>> =
+    ): Flow<Resource<List<NewsArticle>>> =
         networkBoundResource(
             query = {
                 newsArticleDao.getCategoryNews(category)
@@ -87,6 +105,21 @@ class NewsRepository @Inject constructor(
                     newsArticleDao.insertCategoryArticles(categoryNews)
                 }
             },
+            shouldFetch = { cachedArticles ->
+                if (forceRefresh) {
+                    true
+                } else {
+                    val sortedArticles = cachedArticles.sortedBy { newsArticle ->
+                        newsArticle.updatedAt
+                    }
+                    val oldestTimestamp = sortedArticles.firstOrNull()?.updatedAt
+                    val needsRefresh = oldestTimestamp == null ||
+                            oldestTimestamp < System.currentTimeMillis() -
+                            TimeUnit.MINUTES.toMillis(5)
+
+                    needsRefresh
+                }
+            },
             onFetchSuccess = onFetchSuccess,
             onFetchFailed = { t ->
                 if (t !is HttpException && t !is IOException) {
@@ -95,4 +128,8 @@ class NewsRepository @Inject constructor(
                 onFetchFailed(t)
             }
         )
+
+    suspend fun deleteNonBookmarkedArticlesOlderThen(timestampInMillis: Long) {
+        newsArticleDao.deleteNonBookmarkedArticlesOlderThen(timestampInMillis)
+    }
 }

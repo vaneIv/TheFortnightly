@@ -23,30 +23,30 @@ class NewsArticleDaoTest {
     private lateinit var newsArticleDatabase: NewsArticleDatabase
     private lateinit var newsArticleDao: NewsArticleDao
 
-    private val articleSports = NewsArticle("title", "url1", "content", "description", "sports", "nbc", "publishedAt", "urlToImage", false, 3)
-    private val articleBusiness = NewsArticle("title", "url2", "content", "description", "business", "nbc", "publishedAt", "urlToImage", false, 1)
-    private val articleScience = NewsArticle("title", "url3", "content", "description", "science", "nbc", "publishedAt", "urlToImage", false, 1)
-    private val articleGeneral = NewsArticle("title", "url4", "content", "description", "general", "nbc", "publishedAt", "urlToImage", false, 1)
-    private val articleTechnology = NewsArticle("title", "url5", "content", "description", "technology", "nbc", "publishedAt", "urlToImage", true, 1)
-    private val articleHealth = NewsArticle("title", "url6", "content", "description", "health", "nbc", "publishedAt", "urlToImage", false, 1)
+    private val articleSports = NewsArticle("title", "url1", "content", "description","nbc", "publishedAt", "urlToImage", "sports",false, 3)
+    private val articleBusiness = NewsArticle("title", "url2", "content", "description","nbc", "publishedAt", "urlToImage", "business",false, 1)
+    private val articleScience = NewsArticle("title", "url3", "content", "description", "nbc", "publishedAt", "urlToImage", "science", false, 1)
+    private val articleGeneral = NewsArticle("title", "url4", "content", "description", "nbc", "publishedAt", "urlToImage", "general", false, 1)
+    private val articleTechnology = NewsArticle("title", "url5", "content", "description", "nbc", "publishedAt", "urlToImage", "technology", true, 1)
+    private val articleHealth = NewsArticle("title", "url6", "content", "description", "nbc", "publishedAt", "urlToImage", "health", false, 1)
 
     private val articles = listOf(articleSports, articleBusiness, articleScience, articleGeneral, articleTechnology, articleHealth)
 
-    private val topHeadlinesSports = CategoryArticles(1, "url1", "sports")
-    private val topHeadlinesBusiness = CategoryArticles(2, "url2", "business")
-    private val topHeadlinesScience = CategoryArticles(3, "url3", "science")
-    private val topHeadlinesSports2 = CategoryArticles(4, "url4", "sports")
-    private val topHeadlinesBusiness2 = CategoryArticles(5, "url5", "business")
-    private val topHeadlinesScience2 = CategoryArticles(6, "url6", "science")
+    private val topHeadlinesSports = CategoryArticles("url1", "sports", 1)
+    private val topHeadlinesBusiness = CategoryArticles("url2", "business", 2)
+    private val topHeadlinesScience = CategoryArticles("url3", "science", 3)
+    private val topHeadlinesSports2 = CategoryArticles("url4", "sports", 4)
+    private val topHeadlinesBusiness2 = CategoryArticles("url5", "business", 5)
+    private val topHeadlinesScience2 = CategoryArticles("url6", "science", 6)
 
     private val topCategoryHeadlines = listOf(topHeadlinesSports, topHeadlinesBusiness, topHeadlinesScience, topHeadlinesSports2, topHeadlinesBusiness2, topHeadlinesScience2)
 
-    private val topHeadlines1 = TopHeadlines(1, "url1")
-    private val topHeadlines2 = TopHeadlines(2, "url2")
-    private val topHeadlines3 = TopHeadlines(3, "url3")
-    private val topHeadlines4 = TopHeadlines(4, "url4")
-    private val topHeadlines5 = TopHeadlines(5, "url5")
-    private val topHeadlines6 = TopHeadlines(6, "url6")
+    private val topHeadlines1 = TopHeadlines("url1", 1)
+    private val topHeadlines2 = TopHeadlines("url2", 2)
+    private val topHeadlines3 = TopHeadlines("url3", 3)
+    private val topHeadlines4 = TopHeadlines("url4", 4)
+    private val topHeadlines5 = TopHeadlines("url5", 5)
+    private val topHeadlines6 = TopHeadlines("url6", 6)
 
     private val topHeadlines = listOf(topHeadlines1, topHeadlines2, topHeadlines3, topHeadlines4, topHeadlines5, topHeadlines6)
 
@@ -69,7 +69,7 @@ class NewsArticleDaoTest {
     }
 
     @Test
-    fun testInsertAndGetBreakingNews() = runTest {
+    fun `testInsertAndGetBreakingNews`() = runTest {
         newsArticleDao.insertBreakingNews(topHeadlines)
         newsArticleDao.insertArticles(articles)
 
@@ -83,7 +83,7 @@ class NewsArticleDaoTest {
     }
 
     @Test
-    fun testDeleteAllBreakingNewsItems() = runTest {
+    fun `testDeleteAllBreakingNewsItems`() = runTest {
         newsArticleDao.insertBreakingNews(topHeadlines)
         newsArticleDao.insertArticles(articles)
 
@@ -105,7 +105,7 @@ class NewsArticleDaoTest {
     }
 
     @Test
-    fun testInsertAndGetCategoryArticles() = runTest {
+    fun `testInsertAndGetCategoryArticles`() = runTest {
         newsArticleDao.insertArticles(articles)
         newsArticleDao.insertCategoryArticles(topCategoryHeadlines)
 
@@ -132,7 +132,7 @@ class NewsArticleDaoTest {
     }
 
     @Test
-    fun testDeleteCategoryArticles() = runTest {
+    fun `testDeleteCategoryArticles`() = runTest {
         newsArticleDao.insertCategoryArticles(topCategoryHeadlines)
         newsArticleDao.insertArticles(articles)
 
@@ -153,7 +153,7 @@ class NewsArticleDaoTest {
     }
 
     @Test
-    fun testDeleteNonBookmarkedArticlesOlderThen() = runTest {
+    fun `testDeleteNonBookmarkedArticlesOlderThen`() = runTest {
         newsArticleDao.insertArticles(articles)
 
         newsArticleDao.getNewsArticles().test {
@@ -175,7 +175,7 @@ class NewsArticleDaoTest {
     }
 
     @Test
-    fun testGetAllBookmarkedArticles() = runTest {
+    fun `testGetAllBookmarkedArticles`() = runTest {
         newsArticleDao.insertArticles(articles)
 
         newsArticleDao.getAllBookmarkedArticles().test {
@@ -187,7 +187,7 @@ class NewsArticleDaoTest {
     }
 
     @Test
-    fun testResetAllBookmarkedArticlesToFalse() = runTest {
+    fun `testResetAllBookmarkedArticlesToFalse`() = runTest {
         newsArticleDao.insertArticles(articles)
 
         newsArticleDao.resetAllBookmarks()
