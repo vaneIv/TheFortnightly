@@ -5,6 +5,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefortnightly.R
 import com.example.thefortnightly.databinding.FragmentBreakingNewsBinding
@@ -12,7 +14,9 @@ import com.example.thefortnightly.ui.NewsArticlesViewModel
 import com.example.thefortnightly.ui.shared.BaseCategoryFragment
 import com.example.thefortnightly.ui.shared.NewsArticleAdapter
 import com.example.thefortnightly.util.Resource
+import com.example.thefortnightly.util.addDividerDecoration
 import com.example.thefortnightly.util.exhaustive
+import com.example.thefortnightly.util.navigateToDetailsFragment
 import com.example.thefortnightly.util.showSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -23,7 +27,12 @@ class BreakingNewsFragment :
         FragmentBreakingNewsBinding::inflate
     ) {
 
-    private val newsArticleAdapter = NewsArticleAdapter()
+    //private val newsArticleAdapter = NewsArticleAdapter()
+    private val newsArticleAdapter = NewsArticleAdapter(
+        onItemClick = { newsArticle ->
+            findNavController().navigateToDetailsFragment(newsArticle)
+        }
+    )
 
     override val viewModel: NewsArticlesViewModel by viewModels()
 
@@ -36,11 +45,18 @@ class BreakingNewsFragment :
                 adapter = newsArticleAdapter
                 layoutManager = LinearLayoutManager(requireContext())
                 setHasFixedSize(true)
+                addDividerDecoration(R.drawable.divider_horizontal)
             }
 
             buttonRetry.setOnClickListener {
                 viewModel.onManualRefresh()
             }
+
+//            val newsArticleAdapter = NewsArticleAdapter(
+//                onItemClick = { newsArticle ->
+//                    findNavController().navigateToDetailsFragment(newsArticle)
+//                }
+//            )
         }
     }
 

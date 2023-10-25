@@ -17,11 +17,11 @@ object Versions {
     val espressoVersion = "3.5.1"
     val fragmentVersion = "1.5.7"
     val glideVersion = "4.14.2"
-    val hamcrestVersion = "1.3"
     val hiltVersion = "2.44"
     val junitVersion = "4.13.2"
     val materialVersion = "1.9.0"
     val mockitoVersion = "4.11.0"
+    val mockkVersion = "1.13.7"
     val navigationVersion = "2.6.0"
     val pagingVersion = "3.2.0"
     val recyclerViewVersion = "1.3.0"
@@ -110,6 +110,8 @@ object Libs {
     val androidHiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}"
     val truth = "com.google.truth:truth:${Versions.truthVersion}"
     val turbine = "app.cash.turbine:turbine:${Versions.turbineVersion}"
+    val mockk = "io.mockk:mockk:${Versions.mockkVersion}"
+    val mockkAndroid = "io.mockk:mockk-android:${Versions.mockkVersion}"
 
     // Testing code should not be included in the main code.
     // Once https://issuetracker.google.com/128612536 is fixed this can be fixed.

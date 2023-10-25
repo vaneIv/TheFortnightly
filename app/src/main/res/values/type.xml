@@ -105,4 +105,13 @@
         <item name="android:textSize">@dimen/text_size_medium</item>
     </style>
 
+    <style name="TextAppearance.Fortnightly.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/libre_franklin_medium</item>
+        <item name="android:fontFamily">@font/libre_franklin_medium</item>
+    </style>
+
+    <!-- Source and Publish data TextAppearance -->
+    <style name="TextAppearance.Fortnightly.Subtitles" parent="TextAppearance.Fortnightly.Subtitle1">
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
 </resources>

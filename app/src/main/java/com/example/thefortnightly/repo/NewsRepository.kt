@@ -61,7 +61,7 @@ class NewsRepository @Inject constructor(
                     val oldestTimestamp = sortedArticles.firstOrNull()?.updatedAt
                     val needsRefresh = oldestTimestamp == null ||
                             oldestTimestamp < System.currentTimeMillis() -
-                            TimeUnit.MINUTES.toMillis(5)
+                            TimeUnit.HOURS.toMillis(1)
 
                     needsRefresh
                 }

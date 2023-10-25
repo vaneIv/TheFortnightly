@@ -4,10 +4,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.thefortnightly.R
 import com.example.thefortnightly.data.NewsArticle
-import com.example.thefortnightly.databinding.ListItemNewsArticleBinding
+import com.example.thefortnightly.databinding.HeadlineListItemNewsArticleBinding
 
-class NewsArticleViewHolder(
-    private val binding: ListItemNewsArticleBinding,
+class NewsArticleHeadlineViewHolder(
+    private val binding: HeadlineListItemNewsArticleBinding,
     private val onItemClick: (Int) -> Unit
 ) : BaseViewHolder<NewsArticle>(binding.root) {
 
@@ -17,15 +17,12 @@ class NewsArticleViewHolder(
                 .load(item.urlToImage)
                 .error(R.drawable.image_placeholder)
                 .into(imageViewArticle)
-
-            textViewSource.text = item.source
-            textViewTitle.text = item.title
         }
     }
 
     init {
         binding.root.setOnClickListener {
-            val position = bindingAdapterPosition
+            val position = absoluteAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
                 onItemClick(position)
             }

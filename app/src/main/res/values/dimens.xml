@@ -22,4 +22,7 @@
     <dimen name="search_foreground_reveal_height">200dp</dimen>
 
     <dimen name="divider">1dp</dimen>
+
+    <dimen name="toolbar_elevation">8dp</dimen>
+    <dimen name="toolbar">56dp</dimen>
 </resources>
