@@ -129,6 +129,7 @@ class NewsRepository @Inject constructor(
             }
         )
 
+    fun getArticle(articleUrl: String) = newsArticleDao.getArticle(articleUrl)
     suspend fun deleteNonBookmarkedArticlesOlderThen(timestampInMillis: Long) {
         newsArticleDao.deleteNonBookmarkedArticlesOlderThen(timestampInMillis)
     }

@@ -9,6 +9,8 @@
     <string name="could_not_refresh">Could not refresh: %s</string>
     <string name="could_not_load_search_results">Could not load search results: %s</string>
     <string name="unknown_error_occurred">An unknown error occurred</string>
+    <string name="article_details_transition_name">article_details</string>
+    <string name="article_transition_name">article_transition_name_%1$s</string>
 
     <!-- News category label -->
     <string name="category_sports_label">#Sport</string>

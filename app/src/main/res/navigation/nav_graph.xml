@@ -8,6 +8,7 @@
         android:id="@+id/homeViewPagerFragment"
         android:name="com.example.thefortnightly.ui.viewpager.HomeViewPagerFragment"
         android:label="HomeViewPagerFragment">
+
         <action
             android:id="@+id/navigatePagerFragmentToDetailsDetailsFragment"
             app:destination="@id/articleDetailsFragment" />
@@ -36,7 +37,7 @@
         android:name="com.example.thefortnightly.ui.details.ArticleDetailsFragment"
         android:label="ArticleDetailsFragment">
         <argument
-            android:name="newsArticle"
-            app:argType="com.example.thefortnightly.data.NewsArticle" />
+            android:name="articleUrl"
+            app:argType="string" />
     </fragment>
 </navigation>

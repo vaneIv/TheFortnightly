@@ -153,7 +153,6 @@ class NewsArticlesViewModel @Inject constructor(
         }
     }
 
-
     enum class Refresh {
         FORCE, NORMAL
     }

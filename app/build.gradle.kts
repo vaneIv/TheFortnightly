@@ -4,6 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.kapt")
     id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -119,12 +120,16 @@ dependencies {
     testImplementation(Libs.coreTesting)
     testImplementation(Libs.robolectric)
     testImplementation(Libs.coroutinesTest)
+    testImplementation(Libs.turbine)
+    testImplementation(Libs.mockk)
+    testImplementation(Libs.truth)
 
     // Dependencies for Android instrumented unit tests
     androidTestImplementation(Libs.junit)
     androidTestImplementation(Libs.extJunitTest)
     androidTestImplementation(Libs.coreTesting)
     androidTestImplementation(Libs.mockito)
+    androidTestImplementation(Libs.mockkAndroid)
     androidTestImplementation(Libs.coroutinesTest)
     androidTestImplementation(Libs.hiltTest)
     kapt(Libs.androidHiltCompiler)

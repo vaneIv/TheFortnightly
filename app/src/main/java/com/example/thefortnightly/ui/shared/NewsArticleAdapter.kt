@@ -1,13 +1,14 @@
 package com.example.thefortnightly.ui.shared
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.thefortnightly.data.NewsArticle
 import com.example.thefortnightly.databinding.HeadlineListItemNewsArticleBinding
 import com.example.thefortnightly.databinding.ListItemNewsArticleBinding
 
-class NewsArticleAdapter(private val onItemClick: (NewsArticle) -> Unit) :
+class NewsArticleAdapter(private val listener: ArticleAdapterListener) :
     ListAdapter<NewsArticle, BaseViewHolder<NewsArticle>>(NewsArticlesDiffCallback) {
 
     companion object {
@@ -25,12 +26,7 @@ class NewsArticleAdapter(private val onItemClick: (NewsArticle) -> Unit) :
                     parent,
                     false
                 ),
-                onItemClick = { position ->
-                    val newsArticle = getItem(position)
-                    if (newsArticle != null) {
-                        onItemClick(newsArticle)
-                    }
-                }
+                listener
             )
 
             TYPE_ARTICLE -> NewsArticleViewHolder(
@@ -39,12 +35,7 @@ class NewsArticleAdapter(private val onItemClick: (NewsArticle) -> Unit) :
                     parent,
                     false
                 ),
-                onItemClick = { position ->
-                    val newsArticle = getItem(position)
-                    if (newsArticle != null) {
-                        onItemClick(newsArticle)
-                    }
-                }
+                listener
             )
 
             else -> throw IllegalArgumentException("unknown view type $viewType")
@@ -52,9 +43,12 @@ class NewsArticleAdapter(private val onItemClick: (NewsArticle) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder<NewsArticle>, position: Int) {
-        val currentItem = getItem(position)
-
-        currentItem?.let { holder.bind(currentItem) }
+        val newsArticle = getItem(position)
+        newsArticle?.let { holder.bind(newsArticle) }
+//        holder.bind(getItem(position))
+//        val currentItem = getItem(position)
+//
+//        currentItem?.let { holder.bind(currentItem) }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -62,5 +56,9 @@ class NewsArticleAdapter(private val onItemClick: (NewsArticle) -> Unit) :
             0 -> TYPE_HEADLINE
             else -> TYPE_ARTICLE
         }
+    }
+
+    interface ArticleAdapterListener {
+        fun onArticleClicked(view: View, article: NewsArticle)
     }
 }

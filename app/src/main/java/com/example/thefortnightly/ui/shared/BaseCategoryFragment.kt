@@ -36,9 +36,4 @@ abstract class BaseCategoryFragment<VBinding : ViewBinding, VModel : ViewModel>(
 
     open fun setupViews() {}
     open fun setupVM() {}
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

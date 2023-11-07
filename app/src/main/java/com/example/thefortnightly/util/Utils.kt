@@ -3,12 +3,8 @@ package com.example.thefortnightly.util
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.example.thefortnightly.R
-import com.example.thefortnightly.data.NewsArticle
-import com.example.thefortnightly.ui.viewpager.HomeViewPagerFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 
 val <T> T.exhaustive: T
@@ -33,7 +29,14 @@ fun RecyclerView.addDividerDecoration(
     }
 }
 
-fun NavController.navigateToDetailsFragment(newsArticle: NewsArticle) {
-    if (currentDestination?.id != R.id.homeViewPagerFragment) return
-    navigate(HomeViewPagerFragmentDirections.navigatePagerFragmentToDetailsDetailsFragment(newsArticle))
-}
+//fun View.navigateToDetailsFragment(articleUrl: String, transitionNameResId: Int, fragment: Fragment) {
+//    val transitionName = fragment.getString(transitionNameResId)
+//    val extras = FragmentNavigatorExtras(this to transitionName)
+//    val directions = HomeViewPagerFragmentDirections.navigatePagerFragmentToDetailsDetailsFragment(articleUrl)
+//    findNavController().navigate(directions, extras)
+//}
+
+//fun NavController.navigateToDetailsFragment(newsArticle: NewsArticle) {
+//    if (currentDestination?.id != R.id.homeViewPagerFragment) return
+//    navigate(HomeViewPagerFragmentDirections.navigatePagerFragmentToDetailsDetailsFragment(newsArticle.url))
+//}

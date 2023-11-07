@@ -1,5 +1,6 @@
 package com.example.thefortnightly.ui.categories
 
+import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -9,14 +10,15 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefortnightly.R
+import com.example.thefortnightly.data.NewsArticle
 import com.example.thefortnightly.databinding.FragmentBreakingNewsBinding
 import com.example.thefortnightly.ui.NewsArticlesViewModel
 import com.example.thefortnightly.ui.shared.BaseCategoryFragment
 import com.example.thefortnightly.ui.shared.NewsArticleAdapter
+import com.example.thefortnightly.ui.viewpager.HomeViewPagerFragmentDirections
 import com.example.thefortnightly.util.Resource
 import com.example.thefortnightly.util.addDividerDecoration
 import com.example.thefortnightly.util.exhaustive
-import com.example.thefortnightly.util.navigateToDetailsFragment
 import com.example.thefortnightly.util.showSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -25,17 +27,11 @@ import kotlinx.coroutines.launch
 class BreakingNewsFragment :
     BaseCategoryFragment<FragmentBreakingNewsBinding, NewsArticlesViewModel>(
         FragmentBreakingNewsBinding::inflate
-    ) {
+    ), NewsArticleAdapter.ArticleAdapterListener {
 
-    //private val newsArticleAdapter = NewsArticleAdapter()
-    private val newsArticleAdapter = NewsArticleAdapter(
-        onItemClick = { newsArticle ->
-            findNavController().navigateToDetailsFragment(newsArticle)
-        }
-    )
+    private val newsArticleAdapter = NewsArticleAdapter(this)
 
     override val viewModel: NewsArticlesViewModel by viewModels()
-
 
     override fun setupViews() {
         super.setupViews()
@@ -51,12 +47,6 @@ class BreakingNewsFragment :
             buttonRetry.setOnClickListener {
                 viewModel.onManualRefresh()
             }
-
-//            val newsArticleAdapter = NewsArticleAdapter(
-//                onItemClick = { newsArticle ->
-//                    findNavController().navigateToDetailsFragment(newsArticle)
-//                }
-//            )
         }
     }
 
@@ -116,5 +106,14 @@ class BreakingNewsFragment :
     override fun onStart() {
         super.onStart()
         viewModel.onStart()
+    }
+
+    override fun onArticleClicked(cardView: View, article: NewsArticle) {
+        val articleDetailsTransitionName = getString(R.string.article_details_transition_name)
+        val extras = FragmentNavigatorExtras(cardView to articleDetailsTransitionName)
+
+        val directions =
+            HomeViewPagerFragmentDirections.navigatePagerFragmentToDetailsDetailsFragment(article.url)
+        findNavController().navigate(directions, extras)
     }
 }

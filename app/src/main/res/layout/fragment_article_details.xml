@@ -1,54 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ArticleDetailsFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/image_view_article"
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.thefortnightly.ui.details.DetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/details_constraint_layout"
         android:layout_width="match_parent"
-        android:layout_height="288dp"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@mipmap/ic_launcher" />
+        android:layout_height="match_parent"
+        android:background="?android:colorBackground"
+        android:transitionName="@string/article_details_transition_name"
+        tools:context=".ArticleDetailsFragment">
 
-    <TextView
-        android:id="@+id/text_view_source"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/spacing_normal"
-        android:textAppearance="@style/TextAppearance.TheFortnightly.Subtitles"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_view_article"
-        tools:text="FOX NEWS" />
+        <ImageView
+            android:id="@+id/image_view_article"
+            android:layout_width="match_parent"
+            android:layout_height="288dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:imgUrl="@{viewModel.article.urlToImage}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@mipmap/ic_launcher" />
 
-    <TextView
-        android:id="@+id/text_view_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/spacing_normal"
-        android:textAppearance="@style/TextAppearance.TheFortnightly.DetailsTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_source"
-        tools:text="This is a test title for the layout preview" />
+        <TextView
+            android:id="@+id/text_view_source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_normal"
+            android:text="@{viewModel.article.source}"
+            android:textAppearance="@style/TextAppearance.TheFortnightly.Subtitles"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_article"
+            tools:text="FOX NEWS" />
 
-    <TextView
-        android:id="@+id/text_view_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/spacing_normal"
-        android:paddingEnd="@dimen/spacing_normal"
-        android:textAppearance="@style/TextAppearance.TheFortnightly.Content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_title"
-        tools:text="@string/long_text_example" />
+        <TextView
+            android:id="@+id/text_view_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_normal"
+            android:text="@{viewModel.article.title}"
+            android:textAppearance="@style/TextAppearance.TheFortnightly.DetailsTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_source"
+            tools:text="This is a test title for the layout preview" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/text_view_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/spacing_normal"
+            android:paddingEnd="@dimen/spacing_normal"
+            android:text="@{viewModel.article.content}"
+            android:textAppearance="@style/TextAppearance.TheFortnightly.Content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_title"
+            tools:text="@string/long_text_example" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
